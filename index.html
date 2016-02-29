@@ -18,6 +18,8 @@
   
   <p>If you can't put up with my "web design," you can <a href="https://github.com/b1n4ry7r33/DappList">fork my website</a> if you want. It's under GNU General Public License 3.0, so please provide the same freedom in any forks you create.</p>
   
+  <p id="list"></p>
+  
   <script src="https://raw.githubusercontent.com/ethereum/web3.js/master/dist/web3.min.js"></script>
   <script>
     if(typeof web3 !== 'undefined')
@@ -28,7 +30,16 @@
     var dapplistContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"name","outputs":[{"name":"rVal","type":"string"}],"type":"function"},{"constant":false,"inputs":[{"name":"tags","type":"string"}],"name":"setTags","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"url","outputs":[{"name":"rVal","type":"string"}],"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"tags","outputs":[{"name":"rVal","type":"string"}],"type":"function"},{"constant":false,"inputs":[{"name":"url","type":"string"}],"name":"setUrl","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"dAddress","type":"string"}],"name":"setDAddress","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"dAddress","type":"string"},{"name":"name","type":"string"},{"name":"desc","type":"string"},{"name":"url","type":"string"},{"name":"tags","type":"string"},{"name":"hidden","type":"bool"}],"name":"newItem","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"isHidden","outputs":[{"name":"rVal","type":"bool"}],"type":"function"},{"constant":false,"inputs":[],"name":"toggleHidden","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"numItems","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"newCreator","type":"address"}],"name":"changeCreator","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"dAddress","outputs":[{"name":"rVal","type":"string"}],"type":"function"},{"constant":false,"inputs":[{"name":"desc","type":"string"}],"name":"setDesc","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"desc","outputs":[{"name":"rVal","type":"string"}],"type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferDonation","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"string"}],"name":"setName","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"items","outputs":[{"name":"dAddress","type":"string"},{"name":"name","type":"string"},{"name":"desc","type":"string"},{"name":"url","type":"string"},{"name":"taggs","type":"string"},{"name":"hidden","type":"bool"},{"name":"donation","type":"uint256"},{"name":"ID","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"donate","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"IDs","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"empty","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"donation","outputs":[{"name":"rVal","type":"uint256"}],"type":"function"},{"inputs":[],"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"ID","type":"uint256"}],"name":"updated","type":"event"}]);
     var dapplist = dapplistContract.at('0xf28a3ee7348c459dd338df4f5eb68c6acbea9aa6');
     
+    function makeList() {
+      var list = "<table border=1>"
+      
+      for(var i = 1; i <= dapplist.numItems; i++) {
+        list += "<tr><td>" + dapplist.name(i) + "</td><td>" + dapplist.desc(i) + "</td><td>" + dapplist.url(i) + "</td><td>" + dapplist.donation(i) + "</td></tr>"
+        
+      }
+    }
     
+    document.getElementById("list").innerHTML = makeList();
   </script>
 </body>
 
