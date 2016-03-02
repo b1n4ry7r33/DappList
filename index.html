@@ -39,6 +39,7 @@
         list += "<tr><td>" + name + "</td><td>" + dapplist.desc(i) + "</td><td>" + dapplist.url(i) + "</td><td>" + dapplist.donation(i) + "</td></tr>"
         
       }
+      return list;
     }
     
     document.getElementById("list").innerHTML = makeList();
