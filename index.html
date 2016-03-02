@@ -36,9 +36,10 @@
       
       for(var i = 1; i <= dapplist.numItems(); i++) {
         var name = dapplist.name(i);
-        list += "<tr><td>" + name + "</td><td>" + dapplist.desc(i) + "</td><td>" + dapplist.url(i) + "</td><td>" + dapplist.donation(i) + "</td></tr>"
+        list += "<tr><td>" + name + "</td><td>" + dapplist.desc(i) + "</td><td>" + dapplist.url(i) + "</td><td>" + dapplist.donation(i) + "</td></tr>";
         
       }
+      list += "</table>";
       return list;
     }
     
